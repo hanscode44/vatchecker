@@ -2,9 +2,10 @@
 
 namespace VATChecker\Tests\Validation;
 
+use PHPUnit\Framework\TestCase;
 use VATChecker\VATNumber;
 
-class CroatianValidationTest extends \PHPUnit_Framework_Testcase
+class CroatianValidationTest extends TestCase
 {
     public function testCroationFormat()
     {

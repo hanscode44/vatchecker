@@ -2,13 +2,14 @@
 
 namespace VATChecker\Tests\Validations;
 
+use PHPUnit\Framework\TestCase;
 use VATChecker\VATNumber;
 
 /**
  * @package VATChecker\Tests\FormatValidations
  * @author Wim Grifioen <wgriffioen@gmail.com>
  */
-class SlovakianValidationTest extends \PHPUnit_Framework_TestCase
+class SlovakianValidationTest extends TestCase
 {
     public function testValidSlovakianFormat()
     {
