@@ -2,13 +2,14 @@
 
 namespace VATChecker\Tests\Validations;
 
+use PHPUnit\Framework\TestCase;
 use VATChecker\VATNumber;
 
 /**
  * @package VATChecker\Tests\FormatValidations
  * @author Wim Grifioen <wgriffioen@gmail.com>
  */
-class SpanishValidationTest extends \PHPUnit_Framework_TestCase
+class SpanishValidationTest extends TestCase
 {
     public function testValidSpanishFormat()
     {

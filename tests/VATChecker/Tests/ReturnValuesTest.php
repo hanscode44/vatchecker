@@ -2,13 +2,14 @@
 
 namespace VATChecker\Tests;
 
+use PHPUnit\Framework\TestCase;
 use VATChecker\VATNumber;
 
 /**
  * @package VATChecker\Tests
  * @author Wim Griffioen <wgriffioen@gmail.com>
  */
-class ReturnValuesTest extends \PHPUnit_Framework_TestCase
+class ReturnValuesTest extends TestCase
 {
     public function testEmptyNumberReturnValue()
     {
