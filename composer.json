@@ -1,6 +1,6 @@
 {
     "name": "hanscode44/vatchecker",
-    "description": "A simple library to validate a European VAT-number",
+    "description": "A simple library to validate an European VAT-number",
     "minimum-stability": "dev",
     "license": "MIT",
     "authors": [
