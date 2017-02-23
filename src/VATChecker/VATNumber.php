@@ -10,17 +10,14 @@ namespace VATChecker;
  */
 class VATNumber
 {
-
     const RESPONSE_TIMEOUT = 5;
-
-    const INVALID_COUNTRY_CODE  = 1;
-    const INVALID_FORMAT        = 2;
-    const UNABLE_TO_CHECK       = 4;
-    const VALID_VAT_NUMBER      = 8;
-    const INVALID_VAT_NUMBER    = 16;
-    const EMPTY_VAT_NUMBER      = 32;
-    const VALID_VAT_FORMAT      = 64;
-
+    const INVALID_COUNTRY_CODE = 1;
+    const INVALID_FORMAT = 2;
+    const UNABLE_TO_CHECK = 4;
+    const VALID_VAT_NUMBER = 8;
+    const INVALID_VAT_NUMBER = 16;
+    const EMPTY_VAT_NUMBER = 32;
+    const VALID_VAT_FORMAT = 64;
 
     /**
      * @var string Contains the first two characters of the input of the constructor
@@ -58,8 +55,10 @@ class VATNumber
         'ES' => '/^ES[A-Z0-9][0-9]{7}[A-Z0-9]$/',
         'FI' => '/^FI[0-9]{8}$/',
         'FR' => '/^FR[A-Z]{2}\s?[0-9]{9}$/',
-        'GB' => [ '/^GB[0-9]{3}\s?[0-9]{4}\s?[0-9]{2}(\s?[0-9]{3})?$/',
-                  '/^GB(HA|GD)[0-9]{3}$/'],
+        'GB' => [
+            '/^GB[0-9]{3}\s?[0-9]{4}\s?[0-9]{2}(\s?[0-9]{3})?$/',
+            '/^GB(HA|GD)[0-9]{3}$/'
+        ],
         'HU' => '/^HU[0-9]{8}$/',
         'HR' => '/^HR[0-9]{11}$/',
         'IE' => '/^IE[0-9][A-Z0-9][0-9]{5}[A-Z]$/',
@@ -99,20 +98,6 @@ class VATNumber
 
         // Actual number
         $this->vatNumber = substr($vatNumber, 2, strlen($vatNumber));
-    }
-
-    /**
-     * Checks the validity of the VAT-number.
-     *
-     * If the VAT-Number is not valid, it will return an integer which
-     * describe the reason why the VAT-number is invalid.
-     *
-     * @return integer
-     * @deprecated
-     */
-    public function validate()
-    {
-        return $this->checkValidity();
     }
 
     /**
@@ -171,7 +156,7 @@ class VATNumber
             return self::INVALID_VAT_NUMBER;
         }
 
-        $this->soapClient= new \SoapClient('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl');
+        $this->soapClient = new \SoapClient('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl');
 
         try {
             $response = $this->soapClient->checkVat(
@@ -204,5 +189,3 @@ class VATNumber
         return $this->checkValidity() === self::VALID_VAT_NUMBER;
     }
 }
-
-?>
