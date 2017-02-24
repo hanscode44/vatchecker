@@ -1,7 +1,7 @@
 VATChecker
 ----------
 
-[![Build Status](https://travis-ci.org/wgriffioen/vatchecker.png?branch=master)](https://travis-ci.org/wgriffioen/vatchecker)
+[![Build Status](https://travis-ci.org/hanscode44/vatchecker.svg?branch=master)](https://travis-ci.org/hanscode44/vatchecker)
 
 VATChecker is a simple PHP class which makes it possible to check the validity of a European VAT-Number.
 
