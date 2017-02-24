@@ -19,4 +19,4 @@ class AustrianValidationTest extends TestCase
         $this->assertNotEquals(VATNumber::INVALID_COUNTRY_CODE, $vatNumber->validateFormat());
         $this->assertNotEquals(VATNumber::INVALID_FORMAT, $vatNumber->validateFormat());
     }
-} 
+}
