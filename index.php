@@ -1,7 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hans
- * Date: 1-3-2017
- * Time: 07:39
- */
+
+require 'vendor/autoload.php';
+
+use VATChecker\VATNumber;
+
+$number = new VATNumber('NL999999999B01');
+
+if ($number->isValid()) {
+
+    echo 'Business Name: ' . $number->getName() . '<br />';
+    echo 'Address: ' . $number->getAddress() . '<br />';
+
+} else {
+
+    echo "Invalid VAT-Number";
+};
