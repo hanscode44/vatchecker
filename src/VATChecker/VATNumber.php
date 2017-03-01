@@ -229,7 +229,7 @@ class VATNumber
     }
 
 
-    protected function removeNewLines(string $sString): string
+    protected function removeNewLines(string $sString)
     {
         return str_replace(["\n", "\r\n"], ', ', $sString);
     }
