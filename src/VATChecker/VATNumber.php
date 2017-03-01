@@ -6,7 +6,8 @@ namespace VATChecker;
  * Class used to check the validity of a VAT-Number
  *
  * @package VATChecker
- * @author wgriffioen
+ * @author wgriffioen, hloos
+ *
  */
 class VATNumber
 {
@@ -38,6 +39,21 @@ class VATNumber
      * @var \SoapClient Holds the \SoapClient object
      */
     private $soapClient;
+
+    /**
+     * @var object The result
+     */
+    private $response;
+
+    /**
+     * @var string Contains the name of the company of the response
+     */
+    private $name;
+
+    /**
+     * @var string Contains the address of the company in the response
+     */
+    private $address;
 
     /**
      * @var array Contains all the regular expressions for all the possible VAT-numbers
@@ -171,6 +187,9 @@ class VATNumber
         }
 
         if ($response->valid) {
+
+            $this->response = $response;
+
             return self::VALID_VAT_NUMBER;
         } else {
             return self::INVALID_VAT_NUMBER;
@@ -188,4 +207,31 @@ class VATNumber
     {
         return $this->checkValidity() === self::VALID_VAT_NUMBER;
     }
+
+    /**
+     * Returns the name of the company
+     *
+     * @return string Name of the company
+     */
+    public function getName()
+    {
+        return $this->response->name;
+    }
+
+    /**
+     * Returns the address of the company
+     *
+     * @return string Address of the company
+     */
+    public function getAddress()
+    {
+        return $this->removeNewLines($this->response->address);
+    }
+
+
+    protected function removeNewLines(string $sString)
+    {
+        return str_replace(["\n", "\r\n"], ', ', $sString);
+    }
+
 }
