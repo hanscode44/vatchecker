@@ -213,7 +213,7 @@ class VATNumber
      *
      * @return string Name of the company
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->response->name;
     }
