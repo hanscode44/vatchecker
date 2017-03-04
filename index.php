@@ -10,7 +10,6 @@ if ($number->isValid()) {
 
     echo 'Business Name: ' . $number->getName() . '<br />';
     echo 'Address: ' . $number->getAddress() . '<br />';
-
 } else {
 
     echo "Invalid VAT-Number";
