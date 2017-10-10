@@ -196,6 +196,45 @@ class VATNumber
         }
     }
 
+    public function requestIdentifier($ownVatNumber)
+    {
+        if ($this->validateFormat() === self::INVALID_FORMAT) {
+            return self::INVALID_VAT_NUMBER;
+        }
+
+        // Country code
+        $requesterCountryCode = strtoupper(substr($ownVatNumber, 0, 2));
+
+        // Actual number
+        $requesterVatNumber = substr($ownVatNumber, 2, strlen($ownVatNumber));
+
+        $this->soapClient = new \SoapClient('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl');
+
+        try {
+            $response = $this->soapClient->checkVatApprox(
+                [
+                    'countryCode' => $this->countryCode,
+                    'vatNumber' => $this->vatNumber,
+                    'requesterCountryCode' => $requesterCountryCode,
+                    'requesterVatNumber' => $requesterVatNumber
+                ]
+            );
+        } catch (\SoapFault $e) {
+            // In case of a timeout return VATChecker::UNABLE_TO_CHECK
+            return self::UNABLE_TO_CHECK;
+        }
+
+        if ($response->valid) {
+
+            $this->response = $response;
+
+            return self::VALID_VAT_NUMBER;
+        } else {
+            return self::INVALID_VAT_NUMBER;
+        }
+
+    }
+
     /**
      * Checks if the VAT-number is valid.
      *
@@ -226,6 +265,31 @@ class VATNumber
     public function getAddress()
     {
         return $this->removeNewLines($this->response->address);
+    }
+
+    public function getTraderName()
+    {
+        return $this->response->traderName;
+    }
+
+    public function getTraderCompanyType()
+    {
+        return $this->response->traderCompanyType;
+    }
+
+    public function getTraderAddress()
+    {
+        return $this->response->traderAddress;
+    }
+
+    public function getRequestIdentifier()
+    {
+        return $this->response->requestIdentifier;
+    }
+
+    public function getResponse()
+    {
+        return $this->response;
     }
 
 
