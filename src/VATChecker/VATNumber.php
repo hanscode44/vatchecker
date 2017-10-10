@@ -267,26 +267,51 @@ class VATNumber
         return $this->removeNewLines($this->response->address);
     }
 
+    /**
+     * Returns the company name of the requester
+     *
+     * @return string Tradername -> name of the company of the requester
+     */
     public function getTraderName()
     {
         return $this->response->traderName;
     }
 
+    /**
+     * Returns the company type of the requester
+     *
+     * @return string company type of the requester
+     */
     public function getTraderCompanyType()
     {
         return $this->response->traderCompanyType;
     }
 
+    /**
+     * Returns the address of the requester
+     *
+     * @return string address of the requester
+     */
     public function getTraderAddress()
     {
         return $this->response->traderAddress;
     }
 
+    /**
+     * Returns the request identificationNumber
+     *
+     * @return string
+     */
     public function getRequestIdentifier()
     {
         return $this->response->requestIdentifier;
     }
 
+    /**
+     * Returns the response of the requestIdentifier method
+     *
+     * @return object
+     */
     public function getResponse()
     {
         return $this->response;
